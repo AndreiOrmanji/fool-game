@@ -1,0 +1,31 @@
+[package]
+name = "entity"
+version = "0.0.1"
+edition = "2021"
+publish = false
+
+[lib]
+name = "entity"
+path = "src/lib.rs"
+
+[dependencies.sea-orm]
+version = "0.10"
+features = [
+    "macros",
+    "runtime-actix-native-tls",
+    "sqlx-postgres",
+    "with-time",
+    "with-json",
+    "with-rust_decimal",
+    "with-uuid",
+]
+default-features = false
+
+[dependencies.serde]
+version = "1.0"
+features = ["derive"]
+
+
+[dependencies.time]
+version = "0.3"
+features = ["serde"]

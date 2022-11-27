@@ -1,0 +1,25 @@
+[package]
+name = "migration"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+name = "migration"
+path = "src/lib.rs"
+
+[dependencies]
+actix-rt = { version = "2.7", features = ["macros"] }
+playin-cards = "0.1"
+sea-orm-migration = { version = "0.10", features = [
+  "runtime-actix-native-tls",
+  "sqlx-postgres",
+] }
+
+[dependencies.uuid]
+version = "1.2"
+features = [
+    "v4",
+    "fast-rng",
+    "macro-diagnostics",
+]

@@ -1,0 +1,19 @@
+POST http://127.0.0.1:8080/users/sign-up
+Content-Type: application/json
+
+{
+    "username": "test3",
+    "password": "pass1"
+}
+
+###
+@uuid=c19c6645-f9e4-4b20-991c-9fad40f8f39a
+# @uuid=invalid-uuid
+PUT http://127.0.0.1:8080/users/{{uuid}}
+Content-Type: application/json
+
+{
+    "username": "gch1121221a312",
+    "password": "a1qqweq127"
+}
+https://sxyprn.com/post/637898e7660cf.html?sk=GangBang&so=60&ss=trending
