@@ -4,6 +4,8 @@ version = "0.1.0"
 edition = "2021"
 publish = false
 
+[lib]
+
 [workspace]
 members = [
     ".",
@@ -12,6 +14,11 @@ members = [
 ]
 
 [dependencies]
+shuttle-service = { version = "0.8.0", features = ["web-actix-web"] }
+shuttle-aws-rds = { version = "0.8.0", features = ["postgres"] }
+shuttle-secrets = { version = "0.8.0" }
+# shuttle-shared-db = { version = "0.8.0", features = ["postgres"] }
+sqlx = { version = "0.6.2", features = ["runtime-actix-native-tls", "postgres"] }
 tracing ={ version = "*"}
 entity = { path = "entity" }
 migration = { path = "migration" } # depends on your needs
