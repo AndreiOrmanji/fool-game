@@ -2,6 +2,7 @@
 name = "fool-game"
 version = "0.1.0"
 edition = "2021"
+publish = false
 
 [workspace]
 members = [
@@ -11,6 +12,7 @@ members = [
 ]
 
 [dependencies]
+tracing ={ version = "*"}
 entity = { path = "entity" }
 migration = { path = "migration" } # depends on your needs
 actix-web = "4.2"
@@ -19,13 +21,14 @@ derive_more = "*"
 dotenv = "0.15"
 chrono = { version = "0.4", features = ["serde"], optional = true }
 chrono-tz ={ version = "0.8" , optional = true }
-env_logger = "0.9"
+env_logger = "0.10"
 log = "0.4"
 playin-cards = "0.1"
 rand = "0.8"
 sea-orm = { version = "0.10", features = [
     "debug-print",
     "macros",
+    # "runtime-tokio-native-tls",
     "runtime-actix-native-tls",
     # "sqlx-mysql",
     "sqlx-postgres",

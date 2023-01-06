@@ -187,8 +187,8 @@ impl MigrationTrait for Migration {
                             .col(PlayerCard::PlayerId)
                             .col(PlayerCard::CardId),
                     )
-                    .col(ColumnDef::new(PlayerCard::PlayerId).big_integer().null())
-                    .col(ColumnDef::new(PlayerCard::CardId).big_integer().null())
+                    .col(ColumnDef::new(PlayerCard::PlayerId).big_integer().not_null())
+                    .col(ColumnDef::new(PlayerCard::CardId).big_integer().not_null())
                     .foreign_key(
                         ForeignKey::create()
                             .name("FK_playercard_player")

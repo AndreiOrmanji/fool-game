@@ -12,8 +12,10 @@ path = "src/lib.rs"
 version = "0.10"
 features = [
     "macros",
+    "runtime-tokio-native-tls",
     "runtime-actix-native-tls",
     "sqlx-postgres",
+    "sqlx-mysql",
     "with-time",
     "with-json",
     "with-rust_decimal",

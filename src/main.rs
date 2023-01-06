@@ -66,10 +66,7 @@ async fn main() -> AnyhowResult<()> {
                 }),
             )
             .route("/", web::get().to(test_card))
-            .service(
-                web::scope("/users")
-                    .configure(user::user_handlers_config)
-            )
+            .service(web::scope("/users").configure(user::user_handlers_config))
             .default_service(web::route().to(HttpResponse::MethodNotAllowed))
     });
 
