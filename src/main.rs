@@ -16,8 +16,8 @@ mod user;
 
 #[actix_web::main]
 async fn main() -> AnyhowResult<()> {
-    dotenv::from_filename(".env").ok();
-    dotenv::from_filename(".env.local").ok();
+    dotenvy::from_filename(".env").ok();
+    dotenvy::from_filename(".env.local").ok();
 
     tracing_subscriber::fmt()
         .with_max_level(LevelFilter::TRACE)

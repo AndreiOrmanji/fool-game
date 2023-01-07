@@ -91,22 +91,20 @@ impl Room {
         match user.uuid {
             None => ActionResult::Failed,
             Some(user_uuid) => match &self.users.remove(user) {
-                Some(_) => {
-                    match self.admin_uuid {
-                        Some(admin_uuid) => {
-                            if &user_uuid == &admin_uuid {
-                                for (u, s) in &self.users {
-                                    if let Some(random_user_uuid) = u.uuid {
-                                        self.admin_uuid = Some(random_user_uuid.clone());
-                                    }
+                Some(_) => match self.admin_uuid {
+                    Some(admin_uuid) => {
+                        if &user_uuid == &admin_uuid {
+                            for (u, s) in &self.users {
+                                if let Some(random_user_uuid) = u.uuid {
+                                    self.admin_uuid = Some(random_user_uuid.clone());
                                 }
                             }
+                        }
 
-                            return ActionResult::Success
-                        },
-                        None => return ActionResult::Success,
+                        return ActionResult::Success;
                     }
-                }
+                    None => return ActionResult::Success,
+                },
                 None => ActionResult::AlreadyDone,
             },
         }
