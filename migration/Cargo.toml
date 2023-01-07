@@ -11,6 +11,7 @@ path = "src/lib.rs"
 [dependencies]
 actix-rt = { version = "2.7", features = ["macros"] }
 playin-cards = "0.1"
+time = { version = "0.3", features = ["serde"] }
 sea-orm-migration = { version = "0.10", features = [
   "runtime-actix-native-tls",
   "runtime-tokio-native-tls",

@@ -13,6 +13,12 @@ impl Default for Deck {
     }
 }
 
+impl From<Vec<Card>> for Deck {
+    fn from(cards: Vec<Card>) -> Self {
+        Self { cards }
+    }
+}
+
 impl Deck {
     pub fn new(with_jokers: bool) -> Self {
         Self {

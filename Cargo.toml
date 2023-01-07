@@ -25,7 +25,7 @@ migration = { path = "migration" } # depends on your needs
 actix-web = "4.2"
 anyhow = "1.0"
 derive_more = "*"
-dotenv = "0.15"
+dotenvy = "0.15"
 chrono = { version = "0.4", features = ["serde"], optional = true }
 chrono-tz ={ version = "0.8" , optional = true }
 env_logger = "0.10"

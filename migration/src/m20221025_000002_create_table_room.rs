@@ -1,5 +1,7 @@
 use crate::{m20221021_000001_create_table_user::User, DEFAULT_CURRENT_TIMESTAMP};
 use sea_orm_migration::prelude::*;
+use time::OffsetDateTime;
+use uuid::Uuid;
 
 #[derive(DeriveMigrationName)]
 pub struct Migration;
@@ -24,15 +26,15 @@ impl MigrationTrait for Migration {
             )
             .await?;
 
-        let mut insert_q = Query::insert();
-        insert_q
+        let mut cards_insert_query = Query::insert();
+        cards_insert_query
             .into_table(Card::Table)
             .columns([Card::Id, Card::Rank, Card::Suit]);
 
         let shoe = playin_cards::gen_shoe(1, false);
         for i in 0..shoe.len() {
             if let playin_cards::Card::Regular { rank, suit } = shoe.get(i).unwrap() {
-                insert_q.values_panic([
+                cards_insert_query.values_panic([
                     ((i as i64) + 1).into(),
                     format!("{}", rank).into(),
                     format!("{}", suit).into(),
@@ -40,7 +42,7 @@ impl MigrationTrait for Migration {
             }
         }
 
-        manager.exec_stmt(insert_q).await?;
+        manager.exec_stmt(cards_insert_query).await?;
 
         manager
             .create_table(
@@ -130,6 +132,23 @@ impl MigrationTrait for Migration {
                     .to_owned(),
             )
             .await?;
+
+        let mut rooms_insert_query = Query::insert();
+        rooms_insert_query
+            .into_table(Room::Table)
+            .columns([Room::Id, Room::Name, Room::Uuid, Room::CreatedAt]);
+
+        for i in 0..10 {
+            let room_number = (i as i64) + 1;
+            rooms_insert_query.values_panic([
+                room_number.into(),
+                format!("Room {}", room_number).into(),
+                Uuid::new_v4().to_string().into(),
+                OffsetDateTime::now_utc().into()
+            ]);
+        }
+
+        manager.exec_stmt(rooms_insert_query).await?;
 
         manager
             .create_table(
