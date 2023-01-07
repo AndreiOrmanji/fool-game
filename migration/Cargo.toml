@@ -12,6 +12,20 @@ path = "src/lib.rs"
 actix-rt = { version = "2.7", features = ["macros"] }
 playin-cards = "0.1"
 time = { version = "0.3", features = ["serde"] }
+sea-orm = { version = "0.10", features = [
+    "debug-print",
+    "macros",
+    # "runtime-tokio-native-tls",
+    "runtime-actix-native-tls",
+    # "sqlx-mysql",
+    "sqlx-postgres",
+    # "sqlx-sqlite",
+    # "with-chrono",
+    "with-time",
+    "with-json",
+    "with-rust_decimal",
+    "with-uuid",
+], default-features = false }
 sea-orm-migration = { version = "0.10", features = [
   "runtime-actix-native-tls",
   "runtime-tokio-native-tls",

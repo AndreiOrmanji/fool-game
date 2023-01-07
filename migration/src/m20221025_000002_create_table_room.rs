@@ -134,17 +134,20 @@ impl MigrationTrait for Migration {
             .await?;
 
         let mut rooms_insert_query = Query::insert();
-        rooms_insert_query
-            .into_table(Room::Table)
-            .columns([Room::Id, Room::Name, Room::Uuid, Room::CreatedAt]);
+        rooms_insert_query.into_table(Room::Table).columns([
+            Room::Id,
+            Room::Name,
+            Room::Uuid,
+            Room::CreatedAt,
+        ]);
 
         for i in 0..10 {
             let room_number = (i as i64) + 1;
             rooms_insert_query.values_panic([
                 room_number.into(),
                 format!("Room {}", room_number).into(),
-                Uuid::new_v4().to_string().into(),
-                OffsetDateTime::now_utc().into()
+                Uuid::new_v4().into(),
+                OffsetDateTime::now_utc().into(),
             ]);
         }
 
@@ -206,7 +209,11 @@ impl MigrationTrait for Migration {
                             .col(PlayerCard::PlayerId)
                             .col(PlayerCard::CardId),
                     )
-                    .col(ColumnDef::new(PlayerCard::PlayerId).big_integer().not_null())
+                    .col(
+                        ColumnDef::new(PlayerCard::PlayerId)
+                            .big_integer()
+                            .not_null(),
+                    )
                     .col(ColumnDef::new(PlayerCard::CardId).big_integer().not_null())
                     .foreign_key(
                         ForeignKey::create()
